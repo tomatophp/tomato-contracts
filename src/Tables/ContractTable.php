@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tables;
+namespace TomatoPHP\TomatoContracts\Tables;
 
 use Illuminate\Http\Request;
 use ProtoneMedia\Splade\AbstractTable;
@@ -18,7 +18,7 @@ class ContractTable extends AbstractTable
     public function __construct(public mixed $query=null)
     {
         if(!$query){
-            $this->query = \App\Models\Contract::query();
+            $this->query = \TomatoPHP\TomatoContracts\Models\Contract::query();
         }
     }
 
@@ -57,7 +57,7 @@ class ContractTable extends AbstractTable
             )
             ->bulkAction(
                 label: trans('tomato-admin::global.crud.delete'),
-                each: fn (\App\Models\Contract $model) => $model->delete(),
+                each: fn (\TomatoPHP\TomatoContracts\Models\Contract $model) => $model->delete(),
                 after: fn () => Toast::danger(__('Contract Has Been Deleted'))->autoDismiss(2),
                 confirm: true
             )

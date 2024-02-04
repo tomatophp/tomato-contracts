@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace TomatoPHP\TomatoContracts\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use TomatoPHP\TomatoPms\Models\Project;
 
 /**
  * @property integer $id
@@ -22,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $updated_at
  * @property Account $account
  * @property User $user
- * @property User $user
+ * @property User $approvedBy
  * @property Project $project
  * @property User $user
  */
@@ -38,13 +39,13 @@ class Contract extends Model
      */
     public function account()
     {
-        return $this->belongsTo('App\Models\Account');
+        return $this->belongsTo(config('tomato-crm.model'));
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function approvedBy()
     {
         return $this->belongsTo('App\Models\User', 'approved_by_id');
     }
@@ -52,7 +53,7 @@ class Contract extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function employee()
     {
         return $this->belongsTo('App\Models\User', 'employee_id');
     }
@@ -62,7 +63,7 @@ class Contract extends Model
      */
     public function project()
     {
-        return $this->belongsTo('App\Models\Project');
+        return $this->belongsTo(Project::class);
     }
 
     /**

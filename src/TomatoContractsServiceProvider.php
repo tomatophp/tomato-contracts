@@ -3,6 +3,8 @@
 namespace TomatoPHP\TomatoContracts;
 
 use Illuminate\Support\ServiceProvider;
+use TomatoPHP\TomatoAdmin\Facade\TomatoMenu;
+use TomatoPHP\TomatoAdmin\Services\Contracts\Menu;
 
 
 class TomatoContractsServiceProvider extends ServiceProvider
@@ -52,6 +54,12 @@ class TomatoContractsServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        //you boot methods here
+        TomatoMenu::register([
+            Menu::make()
+                ->group(__('PMS'))
+                ->label(__('Contracts'))
+                ->route('admin.contracts.index')
+                ->icon('bx bx-time'),
+        ]);
     }
 }

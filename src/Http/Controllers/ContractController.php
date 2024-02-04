@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace TomatoPHP\TomatoContracts\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -15,7 +15,7 @@ class ContractController extends Controller
 
     public function __construct()
     {
-        $this->model = \App\Models\Contract::class;
+        $this->model = \TomatoPHP\TomatoContracts\Models\Contract::class;
     }
 
     /**
@@ -27,8 +27,8 @@ class ContractController extends Controller
         return Tomato::index(
             request: $request,
             model: $this->model,
-            view: 'admin.contracts.index',
-            table: \App\Tables\ContractTable::class
+            view: 'tomato-contracts::contracts.index',
+            table: \TomatoPHP\TomatoContracts\Tables\ContractTable::class
         );
     }
 
@@ -40,7 +40,7 @@ class ContractController extends Controller
     {
         return Tomato::json(
             request: $request,
-            model: \App\Models\Contract::class,
+            model: \TomatoPHP\TomatoContracts\Models\Contract::class,
         );
     }
 
@@ -50,7 +50,7 @@ class ContractController extends Controller
     public function create(): View
     {
         return Tomato::create(
-            view: 'admin.contracts.create',
+           view: 'tomato-contracts::contracts.create',
         );
     }
 
@@ -64,18 +64,18 @@ class ContractController extends Controller
             request: $request,
             model: \App\Models\Contract::class,
             validation: [
-                            'user_id' => 'required|exists:users,id',
-            'approved_by_id' => 'nullable|exists:users,id',
-            'account_id' => 'nullable|exists:accounts,id',
-            'employee_id' => 'nullable|exists:users,id',
-            'project_id' => 'nullable|exists:projects,id',
-            'type' => 'required|max:255|string',
-            'title' => 'nullable|max:255|string',
-            'body' => 'nullable',
-            'is_active' => 'nullable',
-            'is_completed' => 'nullable',
-            'is_approved' => 'nullable',
-            'placeholders' => 'nullable'
+                'user_id' => 'required|exists:users,id',
+                'approved_by_id' => 'nullable|exists:users,id',
+                'account_id' => 'nullable|exists:accounts,id',
+                'employee_id' => 'nullable|exists:users,id',
+                'project_id' => 'nullable|exists:projects,id',
+                'type' => 'required|max:255|string',
+                'title' => 'nullable|max:255|string',
+                'body' => 'nullable',
+                'is_active' => 'nullable',
+                'is_completed' => 'nullable',
+                'is_approved' => 'nullable',
+                'placeholders' => 'nullable'
             ],
             message: __('Contract updated successfully'),
             redirect: 'admin.contracts.index',
@@ -89,26 +89,26 @@ class ContractController extends Controller
     }
 
     /**
-     * @param \App\Models\Contract $model
+     * @param \TomatoPHP\Models\Contract $model
      * @return View|JsonResponse
      */
-    public function show(\App\Models\Contract $model): View|JsonResponse
+    public function show(\TomatoPHP\TomatoContracts\Models\Contract $model): View|JsonResponse
     {
         return Tomato::get(
             model: $model,
-            view: 'admin.contracts.show',
+           view: 'tomato-contracts::contracts.show',
         );
     }
 
     /**
-     * @param \App\Models\Contract $model
+     * @param \TomatoPHP\Models\Contract $model
      * @return View
      */
-    public function edit(\App\Models\Contract $model): View
+    public function edit(\TomatoPHP\TomatoContracts\Models\Contract $model): View
     {
         return Tomato::get(
             model: $model,
-            view: 'admin.contracts.edit',
+           view: 'tomato-contracts::contracts.edit',
         );
     }
 
@@ -117,24 +117,24 @@ class ContractController extends Controller
      * @param \App\Models\Contract $model
      * @return RedirectResponse|JsonResponse
      */
-    public function update(Request $request, \App\Models\Contract $model): RedirectResponse|JsonResponse
+    public function update(Request $request, \TomatoPHP\TomatoContracts\Models\Contract $model): RedirectResponse|JsonResponse
     {
         $response = Tomato::update(
             request: $request,
             model: $model,
             validation: [
-                            'user_id' => 'sometimes|exists:users,id',
-            'approved_by_id' => 'nullable|exists:users,id',
-            'account_id' => 'nullable|exists:accounts,id',
-            'employee_id' => 'nullable|exists:users,id',
-            'project_id' => 'nullable|exists:projects,id',
-            'type' => 'sometimes|max:255|string',
-            'title' => 'nullable|max:255|string',
-            'body' => 'nullable',
-            'is_active' => 'nullable',
-            'is_completed' => 'nullable',
-            'is_approved' => 'nullable',
-            'placeholders' => 'nullable'
+                'user_id' => 'sometimes|exists:users,id',
+                'approved_by_id' => 'nullable|exists:users,id',
+                'account_id' => 'nullable|exists:accounts,id',
+                'employee_id' => 'nullable|exists:users,id',
+                'project_id' => 'nullable|exists:projects,id',
+                'type' => 'sometimes|max:255|string',
+                'title' => 'nullable|max:255|string',
+                'body' => 'nullable',
+                'is_active' => 'nullable',
+                'is_completed' => 'nullable',
+                'is_approved' => 'nullable',
+                'placeholders' => 'nullable'
             ],
             message: __('Contract updated successfully'),
             redirect: 'admin.contracts.index',
@@ -151,7 +151,7 @@ class ContractController extends Controller
      * @param \App\Models\Contract $model
      * @return RedirectResponse|JsonResponse
      */
-    public function destroy(\App\Models\Contract $model): RedirectResponse|JsonResponse
+    public function destroy(\TomatoPHP\TomatoContracts\Models\Contract $model): RedirectResponse|JsonResponse
     {
         $response = Tomato::destroy(
             model: $model,
