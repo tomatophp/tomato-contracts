@@ -56,20 +56,25 @@ class TomatoContractsServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-//        TomatoMenu::register([
-//            Menu::make()
-//                ->group(__('PMS'))
-//                ->label(__('Contracts'))
-//                ->route('admin.contracts.index')
-//                ->icon('bx bx-time'),
-//        ]);
-//
-//        TomatoCategory::register([
-//           Type::make()
-//            ->label(__('Contract Types'))
-//            ->for('contracts')
-//            ->back('admin.contracts.index')
-//            ->type('types')
-//        ]);
+        TomatoMenu::register([
+            Menu::make()
+                ->group(__('Contracts'))
+                ->label(__('Contract Templates'))
+                ->route('admin.contract-templates.index')
+                ->icon('bx bxs-notepad'),
+            Menu::make()
+                ->group(__('Contracts'))
+                ->label(__('Contracts'))
+                ->route('admin.contracts.index')
+                ->icon('bx bxs-news'),
+        ]);
+
+        TomatoCategory::register([
+           Type::make()
+            ->label(__('Contract Types'))
+            ->for('contracts')
+            ->back('admin.contracts.index')
+            ->type('types')
+        ]);
     }
 }
