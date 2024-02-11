@@ -5,6 +5,8 @@ namespace TomatoPHP\TomatoContracts;
 use Illuminate\Support\ServiceProvider;
 use TomatoPHP\TomatoAdmin\Facade\TomatoMenu;
 use TomatoPHP\TomatoAdmin\Services\Contracts\Menu;
+use TomatoPHP\TomatoCategory\Facades\TomatoCategory;
+use TomatoPHP\TomatoCategory\Services\Contracts\Type;
 
 
 class TomatoContractsServiceProvider extends ServiceProvider
@@ -54,12 +56,20 @@ class TomatoContractsServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        TomatoMenu::register([
-            Menu::make()
-                ->group(__('PMS'))
-                ->label(__('Contracts'))
-                ->route('admin.contracts.index')
-                ->icon('bx bx-time'),
-        ]);
+//        TomatoMenu::register([
+//            Menu::make()
+//                ->group(__('PMS'))
+//                ->label(__('Contracts'))
+//                ->route('admin.contracts.index')
+//                ->icon('bx bx-time'),
+//        ]);
+//
+//        TomatoCategory::register([
+//           Type::make()
+//            ->label(__('Contract Types'))
+//            ->for('contracts')
+//            ->back('admin.contracts.index')
+//            ->type('types')
+//        ]);
     }
 }
